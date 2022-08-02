@@ -1,0 +1,25 @@
+- name: Install user SSH key
+  vars:
+    ansible_ssh_user: pi
+    ansible_ssh_pass: raspberry
+  ansible.posix.authorized_key:
+    user: pi
+    key: https://github.com/mcb30.keys
+
+- name: Install root SSH key
+  vars:
+    ansible_ssh_user: pi
+  become: yes
+  ansible.posix.authorized_key:
+    user: root
+    key: https://github.com/mcb30.keys
+
+- name: Lock user password
+  ansible.builtin.user:
+    name: pi
+    password_lock: true
+
+- name: Gather facts
+  ansible.builtin.setup:
+    gather_subset:
+      - all
