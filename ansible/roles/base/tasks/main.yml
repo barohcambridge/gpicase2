@@ -19,6 +19,10 @@
     name: pi
     password_lock: true
 
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ inventory_hostname }}"
+
 - name: Gather facts
   ansible.builtin.setup:
     gather_subset:
