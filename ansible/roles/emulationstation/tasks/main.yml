@@ -1,0 +1,4 @@
+- name: Configure input
+  ansible.builtin.copy:
+    src: files/es_input.cfg
+    dest: /opt/retropie/configs/all/emulationstation/es_input.cfg
